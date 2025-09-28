@@ -1,7 +1,8 @@
-# Mini Rutter
+# agendaAI
 
 ### 1 - Initializate both postgres and redis docker containers
-**NOTE: Mini Rutter uses Postgres as database, postgres container runs on port 5432 and redis container on port 6379, both ports should be free!**
+**NOTE: agendaAI uses Postgres as database, postgres container runs on port 5432 and redis container on port 6379, both ports should be free!**
+***For agendaAI you should have postgres, pgadmin4 and docker already installed in your machine***
 
 ```sh
 docker-compose up
@@ -30,7 +31,7 @@ REDIS_PORT=6379
 PAGE_SIZE=50
 ```
 
-### 3 - SYNC DATABASE AND RUN MIGRATIONS
+### 3 - SYNC DATABASE AND RUN MIGRATIONS (while running docker on another terminal)
 
 ```sh
 yarn db:sync
@@ -44,26 +45,4 @@ yarn db:migrate
 
 ```sh
 yarn dev
-```
-
-### 5 - QUEUES
-
-Access the queues dashboard to see the jobs being processed!
-
-**Note: the FETCH_PRODUCTS_QUEUE is setup to run every 5 minutes, can be promoted on the queues dashboard to run now**
-
-```
-http://localhost:8080/admin/queues
-```
-
-### 6 - API Routes
-
-**getProducts**
-```
-http://localhost:8080/products
-```
-
-**getOrders**
-```
-http://localhost:8080/orders
 ```
