@@ -27,7 +27,7 @@ export default function NavItem({
   ...other
 }: Props) {
   const { title, path, icon, info, children, disabled, caption, roles } = item;
-  console.log("item", item);
+
   const subItem = depth !== 1;
 
   const renderContent = (
