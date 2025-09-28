@@ -4,11 +4,9 @@ import { authenticateToken } from '../middleware/auth'
 
 const authRoutes = Router()
 
-// Rotas públicas
 authRoutes.post('/auth/register', register)
 authRoutes.post('/auth/login', login)
 
-// Rotas protegidas
 authRoutes.get('/auth/me', authenticateToken, me)
 
 export default authRoutes

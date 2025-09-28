@@ -73,7 +73,6 @@ export const updateBorrow = async (req: Request, res: Response) => {
     Object.assign(borrow, req.body)
     await borrow.save()
 
-    // Se devolveu agora e antes não estava devolvido → aumenta estoque
     if (!prevReturnedDate && borrow.returned_date) {
       borrow.item.available_quantity += borrow.quantity
       await borrow.item.save()
