@@ -32,6 +32,7 @@ PAGE_SIZE=50
 ```
 
 ### 3 - SYNC DATABASE AND RUN MIGRATIONS (while running docker on another terminal)
+***First, create the user on the database to reuse the email and password***
 
 ```sh
 yarn db:sync

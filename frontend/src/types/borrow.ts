@@ -26,8 +26,8 @@ export type IBorrowItem = {
 };
 
 export type IBorrowCreate = {
-  userId: string;
-  itemId: string;
+  userId?: string;
+  itemId?: string;
   quantity: number;
   borrow_date: string;
   due_date: string;

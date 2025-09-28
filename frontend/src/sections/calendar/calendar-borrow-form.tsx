@@ -74,6 +74,7 @@ export default function CalendarBorrowForm({ currentBorrowId, onClose }: Props) 
   }, [currentBorrow, users, items]);
 
   const methods = useForm({
+    // @ts-ignore Yup has a problem with resolver
     resolver: yupResolver(BorrowSchema),
     defaultValues,
   });
