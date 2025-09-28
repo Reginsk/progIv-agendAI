@@ -48,6 +48,13 @@ export const endpoints = {
     update: (id: string) => `/items/${id}`,
     delete: (id: string) => `/items/${id}`,
   },
+  borrow: {
+    list: '/borrows',
+    create: '/borrows',
+    details: '/borrows',
+    update: (id: string) => `/borrows/${id}`,
+    delete: (id: string) => `/borrows/${id}`,
+  },
   product: {
     list: '/api/product/list',
     details: '/api/product/details',

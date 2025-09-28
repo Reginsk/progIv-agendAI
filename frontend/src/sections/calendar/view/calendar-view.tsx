@@ -23,7 +23,7 @@ import { fTimestamp } from 'src/utils/format-time';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 // api
-import { useGetEvents, updateEvent } from 'src/api/calendar';
+import { useGetCalendarEvents } from 'src/api/calendar-borrow';
 // components
 import Iconify from 'src/components/iconify';
 import { useSettingsContext } from 'src/components/settings';
@@ -32,7 +32,7 @@ import { ICalendarFilters, ICalendarFilterValue, ICalendarEvent } from 'src/type
 //
 import { useCalendar, useEvent } from '../hooks';
 import { StyledCalendar } from '../styles';
-import CalendarForm from '../calendar-form';
+import CalendarBorrowForm from '../calendar-borrow-form';
 import CalendarToolbar from '../calendar-toolbar';
 import CalendarFilters from '../calendar-filters';
 import CalendarFiltersResult from '../calendar-filters-result';
@@ -58,7 +58,7 @@ export default function CalendarView() {
 
   const [filters, setFilters] = useState(defaultFilters);
 
-  const { events, eventsLoading } = useGetEvents();
+  const { events, eventsLoading } = useGetCalendarEvents();
 
   const dateError =
     filters.startDate && filters.endDate
@@ -146,7 +146,7 @@ export default function CalendarView() {
             startIcon={<Iconify icon="mingcute:add-line" />}
             onClick={onOpenForm}
           >
-            New Event
+            New Borrow
           </Button>
         </Stack>
 
@@ -167,8 +167,8 @@ export default function CalendarView() {
 
             <Calendar
               weekends
-              editable
-              droppable
+              editable={false} // Disable drag and drop for now
+              droppable={false}
               selectable
               rerenderDelay={10}
               allDayMaintainDuration
@@ -183,12 +183,6 @@ export default function CalendarView() {
               select={onSelectRange}
               eventClick={onClickEvent}
               height={smUp ? 720 : 'auto'}
-              eventDrop={(arg) => {
-                onDropEvent(arg, updateEvent);
-              }}
-              eventResize={(arg) => {
-                onResizeEvent(arg, updateEvent);
-              }}
               plugins={[
                 listPlugin,
                 dayGridPlugin,
@@ -212,12 +206,11 @@ export default function CalendarView() {
         }}
       >
         <DialogTitle sx={{ minHeight: 76 }}>
-          {openForm && <> {currentEvent?.id ? 'Edit Event' : 'Add Event'}</>}
+          {openForm && <> {currentEvent?.id ? 'Edit Borrow' : 'Add Borrow'}</>}
         </DialogTitle>
 
-        <CalendarForm
-          currentEvent={currentEvent}
-          colorOptions={['#00AB55', '#1890FF', '#54D62C', '#FFC107', '#FF4842']}
+        <CalendarBorrowForm
+          currentBorrowId={currentEvent?.id || undefined}
           onClose={onCloseForm}
         />
       </Dialog>
